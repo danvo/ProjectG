@@ -9,7 +9,7 @@ public class Test
     {
         System.out.println(name());
         System.out.println("Bla");
-        System.out.println("jajajaja");
+        System.out.println("jaja");
     }
     
 }
