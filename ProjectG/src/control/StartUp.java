@@ -1,8 +1,8 @@
-package startup;
+package control;
 
 import view.GUI;
 
-public class startup
+public class StartUp
 {
     public static String name()
     {
@@ -14,5 +14,7 @@ public class startup
         GUI gui = new GUI();
         gui.initializeWindow();
         //gui.chooseFile();
+        
+        
     }
 }
