@@ -1,18 +1,27 @@
 package view;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 
 public class GUI
 {
+	JFrame mainFrame;
 	public void initializeWindow()
 	{
 		
-		JFrame mainFrame = new JFrame ("Project G");
+		mainFrame = new JFrame ("Project G");
 		mainFrame.setSize(400, 400);
 		JPanel panel = new JPanel();
-		JButton button = new JButton("Push me!");
+		JButton button = new JButton("MAGIC!");
 		button.setEnabled(true);
-		button.addActionListener(null);
+		button.addActionListener(new java.awt.event.ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				mainFrame.setSize(1000,1000);
+			}
+		});
 		
 		panel.add(button);
 		mainFrame.add(panel);
@@ -35,7 +44,7 @@ public class GUI
 	}
 	//aufm Button öffnen irgendwie file.getName().
 	//mainFrame.getContentPane().add(chooser);
-			//JColorChooser colorChooser = new JColorChooser();
-//mainFrame.getContentPane().add(colorChooser);
+	//JColorChooser colorChooser = new JColorChooser();
+	//mainFrame.getContentPane().add(colorChooser);
 	//JFileChooser chooser = new JFileChooser();
 }
