@@ -1,8 +1,13 @@
 
 public class Test
 {
-    public String name()
+    public static String name()
     {
         return "Hallo fabi";
+    }
+    
+    public static void main(String[] args)
+    {
+        System.out.println(name());
     }
 }
