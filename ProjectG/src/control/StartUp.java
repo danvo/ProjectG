@@ -13,6 +13,7 @@ public class StartUp
     {
         GUI gui = new GUI();
         gui.initializeWindow();
+        gui.initializeWindow2();
         //gui.chooseFile();
         
         
