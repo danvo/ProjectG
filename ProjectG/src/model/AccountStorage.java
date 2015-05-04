@@ -6,8 +6,7 @@ public class AccountStorage implements Storage
 {
 
     
-    @Override
-    public void saveData(String accounts)
+    private void saveData(String accounts)
     {
         
     }
@@ -17,6 +16,22 @@ public class AccountStorage implements Storage
     public List<String> getData()
     {
         return null;
+    }
+
+
+    @Override
+    public void addData(String data)
+    {
+        // TODO Auto-generated method stub
+        
+    }
+
+
+    @Override
+    public void addData(String[] dataArray)
+    {
+        // TODO Auto-generated method stub
+        
     }
     
    
