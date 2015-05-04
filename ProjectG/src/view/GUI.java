@@ -5,7 +5,8 @@ import java.awt.event.ActionEvent;
 
 public class GUI
 {
-	JFrame mainFrame;
+	private JFrame mainFrame;
+	private JDialog mainDialog;
 	public void initializeWindow()
 	{
 		
@@ -27,6 +28,22 @@ public class GUI
 		mainFrame.add(panel);
 		//mainFrame.add(new JLabel ("Thats the Project G."));
 		mainFrame.setVisible(true);
+	}
+	
+	public void initializeWindow2()
+	{
+		mainDialog = new JDialog();
+		mainDialog.setTitle("Project G");
+		mainDialog.setSize(400,400);
+		JPanel panellol = new JPanel();
+		JPanel panelmusic = new JPanel();
+		panellol.add(new JLabel("League of Legends"));
+		panelmusic.add(new JLabel("Music"));
+		JTabbedPane tabpane = new JTabbedPane(JTabbedPane.TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
+		tabpane.addTab("League of Legends is da real shit!", panellol);
+		tabpane.addTab("Music for da real kids!", panelmusic);
+		mainDialog.add(tabpane);
+		mainDialog.setVisible(true);
 	}
 	public void chooseFile()
 	{
