@@ -106,7 +106,7 @@ public class AccountStorage implements Storage
             {
                 for (String s : _accounts)
                 {
-                    fw.write(s + System.getProperty("line seperator"));
+                    fw.write(s + System.getProperty("line.separator"));
                 }
             }
             catch (Exception e)

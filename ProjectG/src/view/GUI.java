@@ -1,12 +1,21 @@
 package view;
 
 import javax.swing.*;
+
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GUI
 {
 	private JFrame mainFrame;
 	private JDialog mainDialog;
+	
+	
+	private JTextField textfield;
+	private JButton addSummonerButton;
+	private JTextArea summonersList;
+	private JButton deleteSummoners;
+	
 	public void initializeWindow()
 	{
 		
@@ -48,27 +57,45 @@ public class GUI
 		tabpane.addTab("Music for da real kids!", panelmusic);
 		mainDialog.add(tabpane);
 		
-		//Textbox und Button
-		JTextField textfield = new JTextField();
+		//Textbox, Button und TextArea
+		textfield = new JTextField();
 		textfield.setColumns(8);
 		textfield.setEditable(true);
-		final String insertText = textfield.getText();
-		System.out.println(insertText);
-		JButton button = new JButton("Add Summoner");
-		button.setEnabled(true);
-		button.addActionListener(new java.awt.event.ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent e) 
-			{
-				System.out.println(insertText);
-			}
-		});
+
+		addSummonerButton = new JButton("Add Summoner");
+		addSummonerButton.setEnabled(true);
+		
+		deleteSummoners = new JButton("Delete Summoner");
+		
+		summonersList = new JTextArea();
+		
 		panellol.add(textfield);
-		panellol.add(button);
+		panellol.add(addSummonerButton);
+		panellol.add(deleteSummoners);
+		panellol.add(summonersList);
 		
 		mainDialog.setVisible(true);
 	}
+	
+	public void addSummonerListener(ActionListener listenforSummoner) {
+	    addSummonerButton.addActionListener(listenforSummoner);
+	}
+	
+	public void addDeleteSummonerListener(ActionListener listenforDelete) {
+	    deleteSummoners.addActionListener(listenforDelete);
+	}
+	
+	public String getSummoner() 
+	{
+	    return textfield.getText();
+	}
+	
+	public void setTextfield(String list) 
+	{
+	    summonersList.setText(list);
+	}
+	
+	
 	public void chooseFile()
 	{
 		JFileChooser chooser = new JFileChooser();

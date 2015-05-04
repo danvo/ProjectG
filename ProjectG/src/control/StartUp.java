@@ -14,7 +14,7 @@ public class StartUp
     {
         AccountStorage aStorage = new AccountStorage();
         GUI gui = new GUI();
-        gui.initializeWindow();
+        //gui.initializeWindow();
         gui.initializeWindow2();
         //gui.chooseFile();
         
