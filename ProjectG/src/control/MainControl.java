@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import view.GUI;
 import model.AccountStorage;
+import model.DoubleAccountException;
 
 public class MainControl 
 {
@@ -41,7 +42,14 @@ public class MainControl
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                _as.addData(_gui.getSummoner());
+                try
+                {
+                    _as.addData(_gui.getSummoner());
+                }
+                catch (DoubleAccountException ex)
+                {
+                    _gui.showDoubleError(_gui.getSummoner());
+                }
                 updateView();
             }
         });
@@ -55,7 +63,7 @@ public class MainControl
             buffer.append(account);
             buffer.append("\n");
         }
-        _gui.setTextfield(buffer.toString());
+        _gui.setTextarea(buffer.toString());
         System.out.println(buffer.toString());
     }
 }

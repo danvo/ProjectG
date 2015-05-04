@@ -36,11 +36,18 @@ public class AccountStorage implements Storage
     /**
      * Adds the account.
      * @param data account
+     * @throws DoubleAccountException 
      */
     @Override
-    public void addData(String data)
+    public void addData(String data) throws DoubleAccountException
     {
-        _accounts.add(data);
+       if (!_accounts.contains(data))
+       {
+           _accounts.add(data);  
+       } else {
+           throw new DoubleAccountException(data);
+       }
+
         saveData();
     }
 

@@ -15,7 +15,15 @@ public class AccountStorageTest
     
     @Test
     public void testeWipe() {
-        as.addData("Test");
+        try
+        {
+            as.addData("Test");
+        }
+        catch (DoubleAccountException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         as.wipeAllData();
         assertTrue(as.getData().size() == 0);
     }
@@ -23,7 +31,15 @@ public class AccountStorageTest
     @Test
     public void testeSaveAndGet()
     {
-        as.addData("Test");
+        try
+        {
+            as.addData("Test");
+        }
+        catch (DoubleAccountException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         System.out.println(as.getData().size());
         assertTrue(as.getData().size() == 1);
         
@@ -36,7 +52,15 @@ public class AccountStorageTest
     public void testeDataNotFound() 
     {
         as.wipeAllData();
-        as.addData("Test");
+        try
+        {
+            as.addData("Test");
+        }
+        catch (DoubleAccountException e1)
+        {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
         try
         {
             as.deleteData("Test2"); 
