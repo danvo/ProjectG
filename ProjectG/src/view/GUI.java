@@ -35,14 +35,38 @@ public class GUI
 		mainDialog = new JDialog();
 		mainDialog.setTitle("Project G");
 		mainDialog.setSize(400,400);
+		
+		//Panelerstellung
 		JPanel panellol = new JPanel();
 		JPanel panelmusic = new JPanel();
 		panellol.add(new JLabel("League of Legends"));
 		panelmusic.add(new JLabel("Music"));
+		panellol.setLayout( new java.awt.FlowLayout() );
+		//Registerkarten
 		JTabbedPane tabpane = new JTabbedPane(JTabbedPane.TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
 		tabpane.addTab("League of Legends is da real shit!", panellol);
 		tabpane.addTab("Music for da real kids!", panelmusic);
 		mainDialog.add(tabpane);
+		
+		//Textbox und Button
+		JTextField textfield = new JTextField();
+		textfield.setColumns(8);
+		textfield.setEditable(true);
+		final String insertText = textfield.getText();
+		System.out.println(insertText);
+		JButton button = new JButton("Add Summoner");
+		button.setEnabled(true);
+		button.addActionListener(new java.awt.event.ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				System.out.println(insertText);
+			}
+		});
+		panellol.add(textfield);
+		panellol.add(button);
+		
 		mainDialog.setVisible(true);
 	}
 	public void chooseFile()
