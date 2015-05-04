@@ -8,7 +8,7 @@ public interface Control
 	 * Gets the accountname of the user
 	 * @return a string
 	 */
-	public String getAccountname(String name);
+	public String getAccountname();
 	
 	/**
 	 * gets the names, of which the user wants to get information about and saving them in one list
