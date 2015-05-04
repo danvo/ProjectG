@@ -1,5 +1,8 @@
 package startup;
-public class Test
+
+import view.GUI;
+
+public class startup
 {
     public static String name()
     {
@@ -8,8 +11,8 @@ public class Test
 
     public static void main(String[] args)
     {
-        System.out.println(name());
-        System.out.println("Bla");
-        System.out.println("jaja");
+        GUI gui = new GUI();
+        gui.initializeWindow();
+        //gui.chooseFile();
     }
 }
