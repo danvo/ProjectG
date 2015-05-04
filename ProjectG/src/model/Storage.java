@@ -12,6 +12,6 @@ public interface Storage
     
     public void wipeAllData();
     
-    public void loadData();
+    public void deleteData(String data) throws DataNotFoundException;
     
 }
