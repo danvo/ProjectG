@@ -2,12 +2,10 @@ package view;
 
 import javax.swing.*;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GUI
 {
-	private JFrame mainFrame;
 	private JDialog mainDialog;
 	
 	
@@ -15,29 +13,10 @@ public class GUI
 	private JButton addSummonerButton;
 	private JTextArea summonersList;
 	private JButton deleteSummoners;
+	private JList sl;
+	private JPanel panellol;
+	private JPanel panelmusic;
 	
-	public void initializeWindow()
-	{
-		
-		mainFrame = new JFrame ("Project G");
-		mainFrame.setSize(400, 400);
-		JPanel panel = new JPanel();
-		JButton button = new JButton("MAGIC!");
-		button.setEnabled(true);
-		button.addActionListener(new java.awt.event.ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent e) 
-			{
-				mainFrame.setSize(1000,1000);
-			}
-		});
-		
-		panel.add(button);
-		mainFrame.add(panel);
-		//mainFrame.add(new JLabel ("Thats the Project G."));
-		mainFrame.setVisible(true);
-	}
 	
 	public void initializeWindow2()
 	{
@@ -46,8 +25,8 @@ public class GUI
 		mainDialog.setSize(400,400);
 		
 		//Panelerstellung
-		JPanel panellol = new JPanel();
-		JPanel panelmusic = new JPanel();
+		panellol = new JPanel();
+		panelmusic = new JPanel();
 		panellol.add(new JLabel("League of Legends"));
 		panelmusic.add(new JLabel("Music"));
 		panellol.setLayout( new java.awt.FlowLayout() );
@@ -69,6 +48,10 @@ public class GUI
 		
 		summonersList = new JTextArea();
 		
+		sl = new JList<String>();
+		
+		
+		panellol.add(sl);
 		panellol.add(textfield);
 		panellol.add(addSummonerButton);
 		panellol.add(deleteSummoners);
@@ -90,11 +73,21 @@ public class GUI
 	    return textfield.getText();
 	}
 	
-	public void setTextfield(String list) 
+	public void setTextarea(String list) 
 	{
 	    summonersList.setText(list);
 	}
 	
+	public void resetTextfield()
+	{
+		textfield.setText(null);
+	}
+	
+	public void showDoubleError(String name)
+	{
+		JLabel dname = new JLabel(name + "is already in the summonerslist!");
+		panellol.add(dname);
+	}
 	
 	public void chooseFile()
 	{
@@ -110,7 +103,6 @@ public class GUI
                 JOptionPane.WARNING_MESSAGE, null, 
                 new String[]{"A", "B", "C"}, "B");
 	}
-	//aufm Button öffnen irgendwie file.getName().
 	//mainFrame.getContentPane().add(chooser);
 	//JColorChooser colorChooser = new JColorChooser();
 	//mainFrame.getContentPane().add(colorChooser);
