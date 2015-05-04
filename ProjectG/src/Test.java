@@ -2,7 +2,7 @@ public class Test
 {
     public static String name()
     {
-        return "Hallo fabi";
+        return "Hallo fabi, du geile sau!" ;
     }
     
     public static void main(String[] args)
