@@ -10,4 +10,8 @@ public interface Storage
     
     public List<String> getData();
     
+    public void wipeAllData();
+    
+    public void loadData();
+    
 }
