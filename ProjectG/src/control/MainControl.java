@@ -50,20 +50,23 @@ public class MainControl
                 {
                     _gui.showDoubleError(_gui.getSummoner());
                 }
-                updateView();
+                finally
+                {
+                	updateView();
+                }
             }
         });
     }
 
     private void updateView()
     {
-        ArrayList<String> accounts = _as.getData(); 
-        StringBuffer buffer = new StringBuffer();
+        ArrayList<String> accounts = _as.getData();
+        String datalist[] = new String[20];
+        int i = 0;
         for (String account: accounts) {
-            buffer.append(account);
-            buffer.append("\n");
+        	datalist[i] = account;
+        	i++;
         }
-        _gui.setTextarea(buffer.toString());
-        System.out.println(buffer.toString());
+        _gui.setList(datalist);
     }
 }

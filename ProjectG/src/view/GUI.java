@@ -1,4 +1,5 @@
 package view;
+import java.util.*;
 
 import javax.swing.*;
 
@@ -13,10 +14,9 @@ public class GUI
 	private JButton addSummonerButton;
 	private JTextArea summonersList;
 	private JButton deleteSummoners;
-	private JList sl;
+	private JList<String> sl;
 	private JPanel panellol;
 	private JPanel panelmusic;
-	
 	
 	public void initializeWindow2()
 	{
@@ -47,15 +47,14 @@ public class GUI
 		deleteSummoners = new JButton("Delete Summoner");
 		
 		summonersList = new JTextArea();
+		sl = new JList<String> ();
 		
-		sl = new JList<String>();
 		
-		
-		panellol.add(sl);
 		panellol.add(textfield);
 		panellol.add(addSummonerButton);
 		panellol.add(deleteSummoners);
 		panellol.add(summonersList);
+		panellol.add(sl);
 		
 		mainDialog.setVisible(true);
 	}
@@ -78,6 +77,11 @@ public class GUI
 	    summonersList.setText(list);
 	}
 	
+	public void setList(String[] list)
+	{
+		sl.setListData(list);
+	}
+	
 	public void resetTextfield()
 	{
 		textfield.setText(null);
@@ -85,7 +89,7 @@ public class GUI
 	
 	public void showDoubleError(String name)
 	{
-		JLabel dname = new JLabel(name + "is already in the summonerslist!");
+		JLabel dname = new JLabel(name + " is already in the summonerslist!");
 		panellol.add(dname);
 	}
 	
