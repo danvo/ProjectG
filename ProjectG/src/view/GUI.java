@@ -52,15 +52,16 @@ public class GUI
 		
 		panellol.add(textfield);
 		panellol.add(addSummonerButton);
+		panellol.add(sl);
 		panellol.add(deleteSummoners);
 		panellol.add(summonersList);
-		panellol.add(sl);
 		
 		mainDialog.setVisible(true);
 	}
 	
 	public void addSummonerListener(ActionListener listenforSummoner) {
 	    addSummonerButton.addActionListener(listenforSummoner);
+	    textfield.addActionListener(listenforSummoner);
 	}
 	
 	public void addDeleteSummonerListener(ActionListener listenforDelete) {
@@ -89,8 +90,14 @@ public class GUI
 	
 	public void showDoubleError(String name)
 	{
-		JLabel dname = new JLabel(name + " is already in the summonerslist!");
+		JLabel dname = new JLabel(name + " has already been added.");
 		panellol.add(dname);
+	}
+	
+	public void showInvalidEntryError(String name)
+	{
+		JLabel ename = new JLabel(name + " is not a valid entry.");
+		panellol.add(ename);
 	}
 	
 	public void chooseFile()
@@ -107,8 +114,12 @@ public class GUI
                 JOptionPane.WARNING_MESSAGE, null, 
                 new String[]{"A", "B", "C"}, "B");
 	}
+}
+
+	
 	//mainFrame.getContentPane().add(chooser);
 	//JColorChooser colorChooser = new JColorChooser();
 	//mainFrame.getContentPane().add(colorChooser);
 	//JFileChooser chooser = new JFileChooser();
-}
+
+	

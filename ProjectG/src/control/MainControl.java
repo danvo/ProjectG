@@ -5,10 +5,12 @@ package control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import view.GUI;
 import model.AccountStorage;
 import model.DoubleAccountException;
+import model.InvalidEntryException;
 
 public class MainControl 
 {
@@ -38,7 +40,6 @@ public class MainControl
         
         _gui.addSummonerListener(new ActionListener()
         {
-            
             @Override
             public void actionPerformed(ActionEvent e)
             {
@@ -50,17 +51,23 @@ public class MainControl
                 {
                     _gui.showDoubleError(_gui.getSummoner());
                 }
+                catch (InvalidEntryException ex)
+                {
+                	_gui.showInvalidEntryError(_gui.getSummoner());
+                }
                 finally
                 {
+                	_gui.resetTextfield();
                 	updateView();
                 }
             }
-        });
+        }); 
     }
 
     private void updateView()
     {
         ArrayList<String> accounts = _as.getData();
+        Collections.sort(_as.getData(), String.CASE_INSENSITIVE_ORDER);
         String datalist[] = new String[20];
         int i = 0;
         for (String account: accounts) {

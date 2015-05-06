@@ -36,15 +36,19 @@ public class AccountStorage implements Storage
     /**
      * Adds the account.
      * @param data account
-     * @throws DoubleAccountException 
+     * @throws DoubleAccountException, InvalidEntryException
      */
     @Override
-    public void addData(String data) throws DoubleAccountException
+    public void addData(String data) throws DoubleAccountException, InvalidEntryException
     {
-       if (!_accounts.contains(data))
+       if (!_accounts.contains(data) && 0 != (data.compareTo("")))
        {
            _accounts.add(data);  
-       } else {
+       } else if ((data.compareTo("")) == 0)
+       {
+    	   throw new InvalidEntryException(data);
+       } else
+       {
            throw new DoubleAccountException(data);
        }
 
