@@ -9,6 +9,7 @@ import java.util.Collections;
 
 import view.GUI;
 import model.AccountStorage;
+import model.DataNotFoundException;
 import model.DoubleAccountException;
 import model.InvalidEntryException;
 
@@ -16,6 +17,7 @@ public class MainControl
 {
     AccountStorage _as;
     GUI _gui;
+    ArrayList<String> _accounts;
     public MainControl(AccountStorage as, GUI gui)
     {
         _as = as;
@@ -28,6 +30,25 @@ public class MainControl
     
     private void addListeners()
     {
+    	_gui.addDeleteSelectedSummonersListener(new ActionListener(){
+    		@Override
+    		public void actionPerformed(ActionEvent e)
+    		{
+    			int[] indices = _gui.getSelectedIndices();
+    			for (int i = indices.length - 1; i>=0 ; i--  ) {
+    				try {
+						_as.deleteData(_accounts.get(indices[i]));
+					} 
+    				catch (DataNotFoundException e1) {
+						_gui.showDataNotFoundError(_accounts.get(indices[i]));
+					}
+    				finally
+    				{
+    					updateView();
+    				}
+    			}
+    		};
+    	});
         _gui.addDeleteSummonerListener(new ActionListener()
         {
             @Override
@@ -66,11 +87,11 @@ public class MainControl
 
     private void updateView()
     {
-        ArrayList<String> accounts = _as.getData();
-        Collections.sort(_as.getData(), String.CASE_INSENSITIVE_ORDER);
+        _accounts = _as.getData();
+        Collections.sort(_accounts, String.CASE_INSENSITIVE_ORDER);
         String datalist[] = new String[20];
         int i = 0;
-        for (String account: accounts) {
+        for (String account: _accounts) {
         	datalist[i] = account;
         	i++;
         }

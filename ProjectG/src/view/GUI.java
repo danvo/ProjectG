@@ -13,7 +13,8 @@ public class GUI
 	private JTextField textfield;
 	private JButton addSummonerButton;
 	private JTextArea summonersList;
-	private JButton deleteSummoners;
+	private JButton deleteSummoner;
+	private JButton deleteAllSummoners;
 	private JList<String> sl;
 	private JPanel panellol;
 	private JPanel panelmusic;
@@ -43,17 +44,21 @@ public class GUI
 
 		addSummonerButton = new JButton("Add Summoner");
 		addSummonerButton.setEnabled(true);
-		
-		deleteSummoners = new JButton("Delete Summoner");
+		deleteSummoner = new JButton("Delete selected Summoner(s)");
+		deleteAllSummoners = new JButton("Delete all Summoners");
 		
 		summonersList = new JTextArea();
 		sl = new JList<String> ();
+		sl.setSelectionMode(
+	    ListSelectionModel.MULTIPLE_INTERVAL_SELECTION
+	    );
 		
 		
 		panellol.add(textfield);
 		panellol.add(addSummonerButton);
 		panellol.add(sl);
-		panellol.add(deleteSummoners);
+		panellol.add(deleteSummoner);
+		panellol.add(deleteAllSummoners);
 		panellol.add(summonersList);
 		
 		mainDialog.setVisible(true);
@@ -65,7 +70,10 @@ public class GUI
 	}
 	
 	public void addDeleteSummonerListener(ActionListener listenforDelete) {
-	    deleteSummoners.addActionListener(listenforDelete);
+	    deleteAllSummoners.addActionListener(listenforDelete);
+	}
+	public void addDeleteSelectedSummonersListener(ActionListener listenforDelete){
+		deleteSummoner.addActionListener(listenforDelete);
 	}
 	
 	public String getSummoner() 
@@ -100,6 +108,12 @@ public class GUI
 		panellol.add(ename);
 	}
 	
+	public void showDataNotFoundError(String name)
+	{
+		JLabel ename = new JLabel(name + " is not in list.");
+		panellol.add(ename);
+	}
+	
 	public void chooseFile()
 	{
 		JFileChooser chooser = new JFileChooser();
@@ -113,6 +127,10 @@ public class GUI
                 JOptionPane.YES_NO_CANCEL_OPTION,
                 JOptionPane.WARNING_MESSAGE, null, 
                 new String[]{"A", "B", "C"}, "B");
+	}
+
+	public int[] getSelectedIndices() {
+		return sl.getSelectedIndices();
 	}
 }
 
