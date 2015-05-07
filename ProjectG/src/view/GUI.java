@@ -1,18 +1,9 @@
 package view;
-import java.util.*;
 
 import javax.swing.*;
 
-import java.awt.Frame;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.Point;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
-import java.util.ArrayList;
 
 public class GUI
 {
@@ -27,13 +18,15 @@ public class GUI
 	private JList<String> sl;
 	private JPanel panellol;
 	private JPanel panelmusic;
-	private JFrame notification;
+
 	
-	public void initializeWindow2()
+	
+	public void initializeGUI()
 	{
 		mainDialog = new JFrame();
 		mainDialog.setTitle("Project G");
-		mainDialog.setSize(400,400);
+		mainDialog.setSize(800,600);
+		//Test
 		
 		//Panelerstellung
 		panellol = new JPanel();
@@ -114,12 +107,6 @@ public class GUI
 	
 	public JFrame getFrame() {
 		return mainDialog;
-	}
-	
-	public void showInvalidEntryError(String name)
-	{
-		JLabel ename = new JLabel(name + " is not a valid entry.");
-		panellol.add(ename);
 	}
 	
 	public void showDataNotFoundError(String name)
