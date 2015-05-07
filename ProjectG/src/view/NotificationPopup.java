@@ -103,7 +103,6 @@ public class NotificationPopup extends JWindow{
 	private int getNotificationWidth() {
 		FontMetrics fontMetrics = _component.getFontMetrics(_component.getFont());
 		int lenght = fontMetrics.stringWidth(_message);
-		System.out.println(lenght);
 		return (int) (lenght + 65 +_message.length()/2); //funktioniert durch ausprobieren
 	}
 	

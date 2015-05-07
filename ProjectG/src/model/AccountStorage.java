@@ -46,7 +46,7 @@ public class AccountStorage implements Storage
            _accounts.add(data);  
        } else if ((data.compareTo("")) == 0)
        {
-    	   throw new InvalidEntryException(data);
+    	   throw new InvalidEntryException("Please enter something into the textarea.");
        } else
        {
            throw new DoubleAccountException(data);

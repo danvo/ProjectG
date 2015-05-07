@@ -71,12 +71,11 @@ public class MainControl
                 }
                 catch (DoubleAccountException ex)
                 {
-                    NotificationPopup nPopup = new NotificationPopup(_gui.getFrame(), ex.getMessage(), NotificationPopup.LENGTH_SHORT);
-                    nPopup.show();
+                    showNotification(ex);
                 }
                 catch (InvalidEntryException ex)
                 {
-                	_gui.showInvalidEntryError(_gui.getSummoner());
+                    showNotification(ex);
                 }
                 finally
                 {
@@ -84,6 +83,11 @@ public class MainControl
                 	updateView();
                 }
             }
+
+			private void showNotification(Exception ex) {
+				NotificationPopup nPopup = new NotificationPopup(_gui.getFrame(), ex.getMessage(), NotificationPopup.LENGTH_SHORT);
+				nPopup.show();
+			}
         }); 
     }
 
