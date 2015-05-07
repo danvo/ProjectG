@@ -1,4 +1,5 @@
 package view;
+import java.util.*;
 
 import javax.swing.*;
 
@@ -21,12 +22,12 @@ public class GUI
 	private JTextField textfield;
 	private JButton addSummonerButton;
 	private JTextArea summonersList;
-	private JButton deleteSummoners;
-	private JList sl;
+	private JButton deleteSummoner;
+	private JButton deleteAllSummoners;
+	private JList<String> sl;
 	private JPanel panellol;
 	private JPanel panelmusic;
 	private JFrame notification;
-	
 	
 	public void initializeWindow2()
 	{
@@ -53,18 +54,21 @@ public class GUI
 
 		addSummonerButton = new JButton("Add Summoner");
 		addSummonerButton.setEnabled(true);
-		
-		deleteSummoners = new JButton("Delete Summoner");
+		deleteSummoner = new JButton("Delete selected Summoner(s)");
+		deleteAllSummoners = new JButton("Delete all Summoners");
 		
 		summonersList = new JTextArea();
+		sl = new JList<String> ();
+		sl.setSelectionMode(
+	    ListSelectionModel.MULTIPLE_INTERVAL_SELECTION
+	    );
 		
-		sl = new JList<String>();
 		
-		
-		panellol.add(sl);
 		panellol.add(textfield);
 		panellol.add(addSummonerButton);
-		panellol.add(deleteSummoners);
+		panellol.add(sl);
+		panellol.add(deleteSummoner);
+		panellol.add(deleteAllSummoners);
 		panellol.add(summonersList);
 		
 		mainDialog.setVisible(true);
@@ -74,10 +78,14 @@ public class GUI
 	
 	public void addSummonerListener(ActionListener listenforSummoner) {
 	    addSummonerButton.addActionListener(listenforSummoner);
+	    textfield.addActionListener(listenforSummoner);
 	}
 	
 	public void addDeleteSummonerListener(ActionListener listenforDelete) {
-	    deleteSummoners.addActionListener(listenforDelete);
+	    deleteAllSummoners.addActionListener(listenforDelete);
+	}
+	public void addDeleteSelectedSummonersListener(ActionListener listenforDelete){
+		deleteSummoner.addActionListener(listenforDelete);
 	}
 	
 	public String getSummoner() 
@@ -88,6 +96,11 @@ public class GUI
 	public void setTextarea(String list) 
 	{
 	    summonersList.setText(list);
+	}
+	
+	public void setList(String[] list)
+	{
+		sl.setListData(list);
 	}
 	
 	public void resetTextfield()
@@ -101,6 +114,18 @@ public class GUI
 	
 	public JFrame getFrame() {
 		return mainDialog;
+	}
+	
+	public void showInvalidEntryError(String name)
+	{
+		JLabel ename = new JLabel(name + " is not a valid entry.");
+		panellol.add(ename);
+	}
+	
+	public void showDataNotFoundError(String name)
+	{
+		JLabel ename = new JLabel(name + " is not in list.");
+		panellol.add(ename);
 	}
 	
 	public void chooseFile()
@@ -117,8 +142,16 @@ public class GUI
                 JOptionPane.WARNING_MESSAGE, null, 
                 new String[]{"A", "B", "C"}, "B");
 	}
+
+	public int[] getSelectedIndices() {
+		return sl.getSelectedIndices();
+	}
+}
+
+	
 	//mainFrame.getContentPane().add(chooser);
 	//JColorChooser colorChooser = new JColorChooser();
 	//mainFrame.getContentPane().add(colorChooser);
 	//JFileChooser chooser = new JFileChooser();
-}
+
+	

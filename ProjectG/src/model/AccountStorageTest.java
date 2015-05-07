@@ -14,14 +14,13 @@ public class AccountStorageTest
     }
     
     @Test
-    public void testeWipe() {
+    public void testeWipe(){
         try
         {
             as.addData("Test");
         }
-        catch (DoubleAccountException e)
+        catch (DoubleAccountException  | InvalidEntryException e)
         {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         as.wipeAllData();
@@ -35,7 +34,7 @@ public class AccountStorageTest
         {
             as.addData("Test");
         }
-        catch (DoubleAccountException e)
+        catch (DoubleAccountException | InvalidEntryException e)
         {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -56,7 +55,7 @@ public class AccountStorageTest
         {
             as.addData("Test");
         }
-        catch (DoubleAccountException e1)
+        catch (DoubleAccountException | InvalidEntryException e1)
         {
             // TODO Auto-generated catch block
             e1.printStackTrace();
