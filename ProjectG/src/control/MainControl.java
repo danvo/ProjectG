@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import view.GUI;
+import view.NotificationPopup;
 import model.AccountStorage;
 import model.DoubleAccountException;
 
@@ -48,7 +49,8 @@ public class MainControl
                 }
                 catch (DoubleAccountException ex)
                 {
-                    _gui.showDoubleError(_gui.getSummoner());
+                    NotificationPopup nPopup = new NotificationPopup(_gui.getFrame(), ex.getMessage(), NotificationPopup.LENGTH_SHORT);
+                    nPopup.show();
                 }
                 updateView();
             }

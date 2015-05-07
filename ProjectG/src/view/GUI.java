@@ -2,11 +2,20 @@ package view;
 
 import javax.swing.*;
 
+import java.awt.Frame;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+import java.util.ArrayList;
 
 public class GUI
 {
-	private JDialog mainDialog;
+	private JFrame mainDialog;
 	
 	
 	private JTextField textfield;
@@ -16,11 +25,12 @@ public class GUI
 	private JList sl;
 	private JPanel panellol;
 	private JPanel panelmusic;
+	private JFrame notification;
 	
 	
 	public void initializeWindow2()
 	{
-		mainDialog = new JDialog();
+		mainDialog = new JFrame();
 		mainDialog.setTitle("Project G");
 		mainDialog.setSize(400,400);
 		
@@ -58,6 +68,8 @@ public class GUI
 		panellol.add(summonersList);
 		
 		mainDialog.setVisible(true);
+		
+		GUILocationBinder.addMainFrame(this);
 	}
 	
 	public void addSummonerListener(ActionListener listenforSummoner) {
@@ -83,10 +95,12 @@ public class GUI
 		textfield.setText(null);
 	}
 	
-	public void showDoubleError(String name)
-	{
-		JLabel dname = new JLabel(name + "is already in the summonerslist!");
-		panellol.add(dname);
+	public void addComponentListener(ComponentListener listenForMove) {
+		mainDialog.addComponentListener(listenForMove);
+	}
+	
+	public JFrame getFrame() {
+		return mainDialog;
 	}
 	
 	public void chooseFile()
