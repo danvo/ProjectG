@@ -4,6 +4,8 @@ package control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -35,19 +37,7 @@ public class MainControl
     		@Override
     		public void actionPerformed(ActionEvent e)
     		{
-    			int[] indices = _gui.getSelectedIndices();
-    			for (int i = indices.length - 1; i>=0 ; i--  ) {
-    				try {
-						_as.deleteData(_accounts.get(indices[i]));
-					} 
-    				catch (DataNotFoundException e1) {
-						_gui.showDataNotFoundError(_accounts.get(indices[i]));
-					}
-    				finally
-    				{
-    					updateView();
-    				}
-    			}
+    			deleteAccounts();
     		};
     	});
         _gui.addDeleteSummonerListener(new ActionListener()
@@ -89,6 +79,38 @@ public class MainControl
 				nPopup.show();
 			}
         }); 
+        _gui.addKeyListener(new KeyListener() {
+            @Override
+			public void keyPressed(KeyEvent e) {
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_DELETE || e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+	    			deleteAccounts();
+				}
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+		});
+    }
+    
+    private void deleteAccounts() {
+		int[] indices = _gui.getSelectedIndices();
+		for (int i = indices.length - 1; i>=0 ; i--  ) {
+			try {
+				_as.deleteData(_accounts.get(indices[i]));
+			} 
+			catch (DataNotFoundException e1) {
+				_gui.showDataNotFoundError(_accounts.get(indices[i]));
+			}
+			finally
+			{
+				updateView();
+			}
+		}
     }
 
     private void updateView()

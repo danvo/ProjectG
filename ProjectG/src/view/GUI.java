@@ -213,22 +213,7 @@ public class GUI
 			}
 		}
 		);
-		sl.addKeyListener(new KeyListener() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-            }
 
-            @Override
-            public void keyReleased(KeyEvent e) { 
-            	 if (e.getKeyCode() == KeyEvent.VK_DELETE || e.getKeyCode() == KeyEvent.VK_BACK_QUOTE) {
-            		 System.out.println("button pushed");
-            }
-            }
-
-			@Override
-			public void keyTyped(KeyEvent e) {				
-			}
-			});
 		mainDialog.setVisible(true);
 		
 		GUILocationBinder.addMainFrame(this);
@@ -297,6 +282,11 @@ public class GUI
 
 	public int[] getSelectedIndices() {
 		return sl.getSelectedIndices();
+	}
+
+	public void addKeyListener(KeyListener keyListener) {
+		sl.addKeyListener(keyListener);
+		
 	}
 	
 }
