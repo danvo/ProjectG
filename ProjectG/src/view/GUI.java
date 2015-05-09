@@ -11,7 +11,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 
+import javax.swing.AbstractButton;
 import javax.swing.Box;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -29,6 +32,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
+
+import model.DataNotFoundException;
 
 public class GUI
 {
@@ -199,7 +204,7 @@ public class GUI
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("MouseClicked");
+				//System.out.println("MouseClicked");
 				if (e.getButton() == MouseEvent.BUTTON3) {
 					_deletePopup = new JPopupMenu();
 					_deletePopup.add(_deletePopupItem);
@@ -208,7 +213,22 @@ public class GUI
 			}
 		}
 		);
-		
+		sl.addKeyListener(new KeyListener() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) { 
+            	 if (e.getKeyCode() == KeyEvent.VK_DELETE || e.getKeyCode() == KeyEvent.VK_BACK_QUOTE) {
+            		 System.out.println("button pushed");
+            }
+            }
+
+			@Override
+			public void keyTyped(KeyEvent e) {				
+			}
+			});
 		mainDialog.setVisible(true);
 		
 		GUILocationBinder.addMainFrame(this);
